@@ -4,18 +4,18 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 994617978174.dkr.ecr.us-east-2.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 773658095475.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t python_application:latest .
-      - docker tag python_application:latest 994617978174.dkr.ecr.us-east-2.amazonaws.com/python_application:latest
+      - docker build -t python_app .
+      - docker tag python_app:latest 773658095475.dkr.ecr.us-east-1.amazonaws.com/python_app:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 994617978174.dkr.ecr.us-east-2.amazonaws.com/python_application:latest
+      - docker push 773658095475.dkr.ecr.us-east-1.amazonaws.com/python_app:latest
 artifacts:
   files:
     - '**/*'
